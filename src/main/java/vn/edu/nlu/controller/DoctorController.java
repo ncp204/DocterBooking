@@ -6,6 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.dto.DoctorDetailDto;
 import vn.edu.nlu.dto.Dtomapper;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.service2.IDoctorService;
@@ -16,6 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/doctor")
+@CrossOrigin(origins = "*")
 public class DoctorController {
     @Autowired
     IDoctorService doctorService;
@@ -28,8 +34,8 @@ public class DoctorController {
     }
 
     @GetMapping("/filter")
-    public List<Doctor> filerDoctor(@RequestParam("gender") String gender,
-                                    @RequestParam("degree") String degree, @RequestParam("specialize") String specialize) {
+    public List<Doctor> filerDoctor(@DefaultValue("nam")  @RequestParam("gender")  String gender,
+                                    @DefaultValue("TS.BS") @RequestParam("degree") String degree, @DefaultValue("Tâm thần") @RequestParam("specialize") String specialize) {
         System.out.println(gender);
         System.out.println(degree);
         System.out.println(specialize);
