@@ -7,7 +7,7 @@ import vn.edu.nlu.entity.Role;
 import vn.edu.nlu.entity.User;
 import vn.edu.nlu.entity2.BaseUser;
 import vn.edu.nlu.entity2.Doctor;
-import vn.edu.nlu.reposiroty2.DoctorRepository;
+import vn.edu.nlu.repository2.DoctorRepository;
 import vn.edu.nlu.repository.RoleRepository;
 import vn.edu.nlu.repository.UserRepository;
 
