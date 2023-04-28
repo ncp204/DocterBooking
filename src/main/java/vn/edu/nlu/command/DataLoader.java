@@ -6,8 +6,12 @@ import org.springframework.stereotype.Component;
 import vn.edu.nlu.entity.Role;
 import vn.edu.nlu.entity.User;
 import vn.edu.nlu.entity2.BaseUser;
+import vn.edu.nlu.entity2.Degree;
 import vn.edu.nlu.entity2.Doctor;
+import vn.edu.nlu.entity2.Specialize;
+import vn.edu.nlu.reposiroty2.DegreeRepository;
 import vn.edu.nlu.reposiroty2.DoctorRepository;
+import vn.edu.nlu.reposiroty2.SpecializeRepository;
 import vn.edu.nlu.repository.RoleRepository;
 import vn.edu.nlu.repository.UserRepository;
 
@@ -24,6 +28,10 @@ public class DataLoader  implements CommandLineRunner {
     // respository 2
     private final DoctorRepository doctorRepository;
 
+    private final DegreeRepository degreeRepository;
+
+    private final SpecializeRepository specializeRepository;
+
     @Override
     public void run(String... args) throws Exception {
         if(roleCheckExist()){
@@ -34,6 +42,12 @@ public class DataLoader  implements CommandLineRunner {
         }
         if(doctorCheckExist()){
             createDoctor();
+        }
+        if(degreeCheckExist()){
+            createDegree();
+        }
+        if(specializeCheckExist()){
+            createSpecialze();
         }
     }
     public void createRole(){
@@ -86,6 +100,26 @@ public class DataLoader  implements CommandLineRunner {
 
 
     }
+
+    public void createDegree(){
+       degreeRepository.save(new Degree("TS.BS"));
+        degreeRepository.save(new Degree("GS.TS.BS"));
+        degreeRepository.save(new Degree("PSG.TS.BS"));
+
+
+
+    }
+
+    public void createSpecialze(){
+        specializeRepository.save(new Specialize("Tâm thần"));
+        specializeRepository.save(new Specialize("Nhi"));
+        specializeRepository.save(new Specialize("Mắt"));
+        specializeRepository.save(new Specialize("Dinh dưỡng"));
+
+
+    }
+
+
     public boolean userCheckExist(){
         return userRepository.findAll().isEmpty();
     }
@@ -95,5 +129,11 @@ public class DataLoader  implements CommandLineRunner {
 
     public boolean doctorCheckExist(){
         return doctorRepository.findAll().isEmpty();
+    }
+    public boolean degreeCheckExist(){
+        return degreeRepository.findAll().isEmpty();
+    }
+    public boolean specializeCheckExist(){
+        return specializeRepository.findAll().isEmpty();
     }
 }
