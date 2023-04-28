@@ -28,6 +28,7 @@ public class DoctorService implements IDoctorService {
     @Override
     public List<Doctor> filerDoctor(String gender, String degree, String specialize) {
         List<Doctor> doctors = null;
+        if(gender == "" && degree == "" && specialize == "") return doctorRepository.findAll();
         if (gender != "" && degree != "" && specialize != "") {
             doctors = doctorRepository.findByGenderAndDegreeAndSpecialize(gender, degree, specialize);
         } else if (gender != "" && degree != "") {
