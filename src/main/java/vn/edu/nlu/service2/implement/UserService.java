@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.entity2.Patient;
-import vn.edu.nlu.reposiroty2.DoctorRepository;
-import vn.edu.nlu.reposiroty2.PatientRepository;
+import vn.edu.nlu.repository2.DoctorRepository;
+import vn.edu.nlu.repository2.PatientRepository;
 import vn.edu.nlu.service2.IUserService;
 
 import java.util.Optional;
