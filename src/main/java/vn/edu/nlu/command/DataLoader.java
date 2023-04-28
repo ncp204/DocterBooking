@@ -83,8 +83,6 @@ public class DataLoader  implements CommandLineRunner {
         doctor1.setSpecialize("Tâm thần");
         doctor1.setDegree("GS.TS.BS");
         doctorRepository.save(doctor1);
-
-
     }
     public boolean userCheckExist(){
         return userRepository.findAll().isEmpty();

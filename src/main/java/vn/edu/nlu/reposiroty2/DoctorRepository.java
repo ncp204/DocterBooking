@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import vn.edu.nlu.entity2.Doctor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
@@ -17,6 +18,6 @@ public interface DoctorRepository extends JpaRepository<Doctor,Integer> {
     List<Doctor> findBySpecialize(String specialize);
     List<Doctor> findByGender(String gender);
 
-
+    Optional<Doctor> findDoctorByEmail(String email);
 
 }
