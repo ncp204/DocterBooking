@@ -24,4 +24,31 @@ public class DoctorService implements IDoctorService {
             throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Không tìm thấy bác sĩ nào");
         }
     }
+
+    @Override
+    public List<Doctor> filerDoctor(String gender, String degree, String specialize) {
+        List<Doctor> doctors = null;
+        if (gender != "" && degree != "" && specialize != "") {
+            doctors = doctorRepository.findByGenderAndDegreeAndSpecialize(gender, degree, specialize);
+        } else if (gender != "" && degree != "") {
+            doctors = doctorRepository.findByGenderAndDegree(gender, degree);
+        } else if (gender != "" && specialize != "") {
+            doctors = doctorRepository.findByGenderAndSpecialize(gender, specialize);
+        } else if (degree != "" && specialize != "") {
+            doctors = doctorRepository.findByDegreeAndSpecialize(degree, specialize);
+        } else if (gender != "") {
+            doctors = doctorRepository.findByGender(gender);
+        } else if (degree != "") {
+            doctors = doctorRepository.findByDegree(degree);
+        } else {
+            doctors = doctorRepository.findBySpecialize(specialize);
+        }
+        if (doctors != null) {
+            return doctors;
+        } else {
+            throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Không tìm thấy bác sĩ nào");
+        }
+    }
+
+
 }

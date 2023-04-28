@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface IDoctorService {
     List<Doctor> getAllDoctor();
+    List<Doctor> filerDoctor(String gender, String degree, String specialize);
 }

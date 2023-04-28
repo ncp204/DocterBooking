@@ -1,9 +1,6 @@
 package vn.edu.nlu.entity2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Doctor extends BaseUser{
+    private String fullName;
+    private String gender;
     private String specialize;
     private String degree;
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
