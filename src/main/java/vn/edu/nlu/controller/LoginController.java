@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.exception.ServiceException;
-import vn.edu.nlu.model.LoginForm;
+import vn.edu.nlu.payload.request.LoginForm;
 import vn.edu.nlu.security.jwt.JwtTokenProvider;
 import vn.edu.nlu.service2.implement.UserService;
 

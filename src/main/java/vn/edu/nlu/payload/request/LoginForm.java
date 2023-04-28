@@ -1,4 +1,4 @@
-package vn.edu.nlu.model;
+package vn.edu.nlu.payload.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

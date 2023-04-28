@@ -1,19 +1,16 @@
 package vn.edu.nlu.entity2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-
+@SuperBuilder
 public abstract class BaseUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +18,8 @@ public abstract class BaseUser {
     private String user_name;
     private String phone;
     private String email;
+    private boolean male;
     private String password;
+    private String token;
+    private boolean active;
 }

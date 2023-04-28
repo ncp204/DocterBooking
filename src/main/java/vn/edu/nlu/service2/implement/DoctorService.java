@@ -3,12 +3,15 @@ package vn.edu.nlu.service2.implement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import vn.edu.nlu.dto.DoctorDetailDto;
+import vn.edu.nlu.dto.Dtomapper;
+import vn.edu.nlu.repository2.DoctorRepository;
 import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.exception.ServiceException;
-import vn.edu.nlu.reposiroty2.DoctorRepository;
 import vn.edu.nlu.service2.IDoctorService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DoctorService implements IDoctorService {
@@ -49,6 +52,16 @@ public class DoctorService implements IDoctorService {
         } else {
             throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Không tìm thấy bác sĩ nào");
         }
+    }
+
+    @Override
+    public DoctorDetailDto getDetailById(int id) {
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        if (doctor.isEmpty()){
+            return null;
+        }
+        DoctorDetailDto doctorDetailDto = Dtomapper.doctorDetailMap(doctor.get());
+        return doctorDetailDto;
     }
 
 

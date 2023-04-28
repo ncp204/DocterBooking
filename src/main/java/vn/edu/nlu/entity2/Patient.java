@@ -1,9 +1,7 @@
 package vn.edu.nlu.entity2;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table
+@SuperBuilder
 public class Patient extends BaseUser{
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     private List<Appointment> appointments = new ArrayList<>();
