@@ -9,9 +9,9 @@ import vn.edu.nlu.entity2.BaseUser;
 import vn.edu.nlu.entity2.Degree;
 import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.entity2.Specialize;
-import vn.edu.nlu.reposiroty2.DegreeRepository;
-import vn.edu.nlu.reposiroty2.DoctorRepository;
-import vn.edu.nlu.reposiroty2.SpecializeRepository;
+import vn.edu.nlu.repository2.DegreeRepository;
+import vn.edu.nlu.repository2.DoctorRepository;
+import vn.edu.nlu.repository2.SpecializeRepository;
 import vn.edu.nlu.repository.RoleRepository;
 import vn.edu.nlu.repository.UserRepository;
 

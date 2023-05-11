@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vn.edu.nlu.entity2.Degree;
-import vn.edu.nlu.reposiroty2.DegreeRepository;
+import vn.edu.nlu.repository2.DegreeRepository;
 
 import java.util.List;
 
