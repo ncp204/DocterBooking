@@ -1,11 +1,10 @@
-package vn.edu.nlu.service2;
+package vn.edu.nlu.service;
 
 import org.springframework.stereotype.Service;
 import vn.edu.nlu.dto.DoctorDetailDto;
-import vn.edu.nlu.entity2.Doctor;
+import vn.edu.nlu.entity.Doctor;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 

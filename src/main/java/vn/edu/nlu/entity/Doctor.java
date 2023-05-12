@@ -1,12 +1,10 @@
-package vn.edu.nlu.entity2;
+package vn.edu.nlu.entity;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
-@SuperBuilder
-public class Patient extends BaseUser{
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+@Builder
+public class Doctor extends BaseUser{
+    private String fullName;
+    private String specialize;
+    private String degree;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Appointment> appointments = new ArrayList<>();
 }
