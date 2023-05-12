@@ -1,8 +1,8 @@
-package vn.edu.nlu.service.implement;
+package vn.edu.nlu.service2.implement;
 
 import org.springframework.stereotype.Component;
-import vn.edu.nlu.entity.BaseUser;
-import vn.edu.nlu.service.ISendmailService;
+import vn.edu.nlu.entity2.BaseUser;
+import vn.edu.nlu.service2.ISendmailService;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

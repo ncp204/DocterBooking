@@ -5,16 +5,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.dto.DoctorDetailDto;
+import vn.edu.nlu.dto.Dtomapper;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import vn.edu.nlu.entity.Doctor;
+import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.exception.ServiceException;
-import vn.edu.nlu.service.IDoctorService;
+import vn.edu.nlu.service2.IDoctorService;
+import vn.edu.nlu.service2.implement.DoctorService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/doctor")

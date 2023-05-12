@@ -1,11 +1,13 @@
 package vn.edu.nlu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vn.edu.nlu.entity.Patient;
-import vn.edu.nlu.service.IPatientService;
+import vn.edu.nlu.entity.User;
+import vn.edu.nlu.service.PatientService;
+import vn.edu.nlu.service.PatientServiceImpl;
 
 import java.util.List;
 
@@ -13,10 +15,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class PatientController {
     @Autowired
-    IPatientService patientService;
+    PatientService patientService;
 
     @GetMapping
-    public List<Patient> patients(){
+    public List<User> patients(){
         try {
             return null;
         }catch (Exception e){

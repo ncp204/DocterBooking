@@ -1,9 +1,10 @@
-package vn.edu.nlu.entity;
+package vn.edu.nlu.entity2;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vn.edu.nlu.entity.User;
 
 import javax.persistence.*;
 import java.sql.Date;

@@ -1,8 +1,8 @@
-package vn.edu.nlu.repository;
+package vn.edu.nlu.repository2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import vn.edu.nlu.entity.Patient;
+import vn.edu.nlu.entity2.Patient;
 
 import java.util.Optional;
 

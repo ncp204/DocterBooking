@@ -1,11 +1,11 @@
-package vn.edu.nlu.service.implement;
+package vn.edu.nlu.service2.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import vn.edu.nlu.entity.Patient;
+import vn.edu.nlu.entity2.Patient;
 import vn.edu.nlu.payload.request.SignupRequest;
-import vn.edu.nlu.repository.PatientRepository;
-import vn.edu.nlu.service.IPatientService;
+import vn.edu.nlu.repository2.PatientRepository;
+import vn.edu.nlu.service2.IPatientService;
 
 import java.util.Optional;
 import java.util.UUID;

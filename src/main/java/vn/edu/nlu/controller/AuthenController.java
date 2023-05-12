@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.edu.nlu.entity.Patient;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import vn.edu.nlu.entity2.Patient;
 import vn.edu.nlu.payload.request.SignupRequest;
-import vn.edu.nlu.service.IPatientService;
+import vn.edu.nlu.service2.IPatientService;
 
 import javax.servlet.http.HttpServletRequest;
 

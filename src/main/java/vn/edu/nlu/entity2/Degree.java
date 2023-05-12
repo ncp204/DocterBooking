@@ -1,4 +1,4 @@
-package vn.edu.nlu.entity;
+package vn.edu.nlu.entity2;
 
 import lombok.*;
 

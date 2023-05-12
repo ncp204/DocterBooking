@@ -1,14 +1,14 @@
-package vn.edu.nlu.service.implement;
+package vn.edu.nlu.service2.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import vn.edu.nlu.dto.DoctorDetailDto;
 import vn.edu.nlu.dto.Dtomapper;
-import vn.edu.nlu.repository.DoctorRepository;
-import vn.edu.nlu.entity.Doctor;
+import vn.edu.nlu.repository2.DoctorRepository;
+import vn.edu.nlu.entity2.Doctor;
 import vn.edu.nlu.exception.ServiceException;
-import vn.edu.nlu.service.IDoctorService;
+import vn.edu.nlu.service2.IDoctorService;
 
 import java.util.List;
 import java.util.Optional;

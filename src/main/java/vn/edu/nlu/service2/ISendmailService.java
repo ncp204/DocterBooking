@@ -1,7 +1,9 @@
-package vn.edu.nlu.service;
+package vn.edu.nlu.service2;
 
 import org.springframework.stereotype.Service;
-import vn.edu.nlu.entity.BaseUser;
+import vn.edu.nlu.entity2.BaseUser;
+
+import java.util.List;
 
 @Service
 public interface ISendmailService {
