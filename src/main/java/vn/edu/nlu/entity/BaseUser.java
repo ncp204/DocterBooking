@@ -1,4 +1,4 @@
-package vn.edu.nlu.entity2;
+package vn.edu.nlu.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -18,7 +18,7 @@ public abstract class BaseUser {
     private String user_name;
     private String phone;
     private String email;
-    private boolean male;
+    private String gender;
     private String password;
     private String token;
     private boolean active;

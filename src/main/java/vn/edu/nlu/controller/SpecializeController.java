@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vn.edu.nlu.entity2.Degree;
-import vn.edu.nlu.entity2.Specialize;
-import vn.edu.nlu.repository2.SpecializeRepository;
+import vn.edu.nlu.entity.Specialize;
+import vn.edu.nlu.repository.SpecializeRepository;
 
 import java.util.List;
 

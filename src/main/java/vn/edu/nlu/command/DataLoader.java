@@ -3,28 +3,19 @@ package vn.edu.nlu.command;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import vn.edu.nlu.entity.Role;
-import vn.edu.nlu.entity.User;
-import vn.edu.nlu.entity2.BaseUser;
-import vn.edu.nlu.entity2.Degree;
-import vn.edu.nlu.entity2.Doctor;
-import vn.edu.nlu.entity2.Specialize;
-import vn.edu.nlu.repository2.DegreeRepository;
-import vn.edu.nlu.repository2.DoctorRepository;
-import vn.edu.nlu.repository2.SpecializeRepository;
-import vn.edu.nlu.repository.RoleRepository;
-import vn.edu.nlu.repository.UserRepository;
-
-import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
+import vn.edu.nlu.entity.Degree;
+import vn.edu.nlu.entity.Doctor;
+import vn.edu.nlu.entity.Specialize;
+import vn.edu.nlu.repository.DegreeRepository;
+import vn.edu.nlu.repository.DoctorRepository;
+import vn.edu.nlu.repository.SpecializeRepository;
 
 @Component
 @RequiredArgsConstructor
 public class DataLoader  implements CommandLineRunner {
-    private final UserRepository userRepository;
-
-    private final RoleRepository roleRepository;
+//    private final UserRepository userRepository;
+//
+//    private final RoleRepository roleRepository;
     // respository 2
     private final DoctorRepository doctorRepository;
 
@@ -34,12 +25,12 @@ public class DataLoader  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(roleCheckExist()){
-            createRole();
-        }
-        if(userCheckExist()){
-            createUser();
-        }
+//        if(roleCheckExist()){
+//            createRole();
+//        }
+//        if(userCheckExist()){
+//            createUser();
+//        }
         if(doctorCheckExist()){
             createDoctor();
         }
@@ -50,30 +41,30 @@ public class DataLoader  implements CommandLineRunner {
             createSpecialze();
         }
     }
-    public void createRole(){
-        Role role_user = Role.builder().name("ROLE_USER").build();
-        Role role_doctor = Role.builder().name("ROLE_DOCTOR").build();
-        roleRepository.save(role_user);
-        roleRepository.save(role_doctor);
-
-    }
-    public void createUser(){
-        Set<Role> roles = new HashSet<>();
-
-        roles.add(roleRepository.findById(1).get());
-        User user = User.builder()
-            .user_name("black jack")
-                .phone("1234567890")
-                .email("john.doe@example.com")
-                .password("123123")
-                .specialize("Java Developer")
-                .active(true)
-                .register_date(new Date(System.currentTimeMillis()))
-                .roles(roles)
-            . build();
-
-        userRepository.save(user);
-    }
+//    public void createRole(){
+//        Role role_user = Role.builder().name("ROLE_USER").build();
+//        Role role_doctor = Role.builder().name("ROLE_DOCTOR").build();
+//        roleRepository.save(role_user);
+//        roleRepository.save(role_doctor);
+//
+//    }
+//    public void createUser(){
+//        Set<Role> roles = new HashSet<>();
+//
+//        roles.add(roleRepository.findById(1).get());
+//        User user = User.builder()
+//            .user_name("black jack")
+//                .phone("1234567890")
+//                .email("john.doe@example.com")
+//                .password("123123")
+//                .specialize("Java Developer")
+//                .active(true)
+//                .register_date(new Date(System.currentTimeMillis()))
+//                .roles(roles)
+//            . build();
+//
+//        userRepository.save(user);
+//    }
 
     public void createDoctor(){
        Doctor doctor = new Doctor();
@@ -118,12 +109,12 @@ public class DataLoader  implements CommandLineRunner {
     }
 
 
-    public boolean userCheckExist(){
-        return userRepository.findAll().isEmpty();
-    }
-    public boolean roleCheckExist(){
-        return userRepository.findAll().isEmpty();
-    }
+//    public boolean userCheckExist(){
+//        return userRepository.findAll().isEmpty();
+//    }
+//    public boolean roleCheckExist(){
+//        return userRepository.findAll().isEmpty();
+//    }
 
     public boolean doctorCheckExist(){
         return doctorRepository.findAll().isEmpty();
