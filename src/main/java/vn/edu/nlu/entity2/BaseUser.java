@@ -1,5 +1,6 @@
 package vn.edu.nlu.entity2;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -19,6 +20,7 @@ public abstract class BaseUser {
     private String phone;
     private String email;
     private boolean male;
+    @JsonIgnore
     private String password;
     private String token;
     private boolean active;
