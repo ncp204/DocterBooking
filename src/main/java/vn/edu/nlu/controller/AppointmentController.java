@@ -2,6 +2,7 @@ package vn.edu.nlu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import vn.edu.nlu.dto.AppointmentDto;
 import vn.edu.nlu.entity.Appointment;
 import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.payload.request.AppointmentRequest;
@@ -19,12 +20,12 @@ public class AppointmentController {
     AppointmentService appointmentService;
 
     @GetMapping("/doctor/{id}")
-    public List<Appointment> getListAppointmentByDoctorId(@PathVariable int id) {
+    public List<AppointmentDto> getListAppointmentByDoctorId(@PathVariable int id) {
         return appointmentService.getListAppointmentDoctorById(id);
     }
 
     @GetMapping("/patient/{id}")
-    public List<Appointment> getListAppointmentByPatientId(@PathVariable int id) {
+    public List<AppointmentDto> getListAppointmentByPatientId(@PathVariable int id) {
         return appointmentService.getListAppointmentPatientById(id);
     }
 

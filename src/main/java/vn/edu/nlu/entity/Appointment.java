@@ -1,5 +1,7 @@
 package vn.edu.nlu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,11 +30,12 @@ public class Appointment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnd;
     private String status;
-    @ManyToOne(targetEntity = Doctor.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "doctorId",referencedColumnName = "id")
+    @ManyToOne(targetEntity = Doctor.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "doctorId", referencedColumnName = "id")
+
     private Doctor doctor;
-    @ManyToOne(targetEntity = Patient.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientId",referencedColumnName = "id")
+    @ManyToOne(targetEntity = Patient.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "patientId", referencedColumnName = "id")
 
     private Patient patient;
 
