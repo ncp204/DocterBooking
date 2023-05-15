@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.payload.request.LoginForm;
+import vn.edu.nlu.payload.respose.LoginResponse;
 import vn.edu.nlu.security.jwt.JwtTokenProvider;
 import vn.edu.nlu.service.implement.UserService;
 
@@ -21,10 +22,11 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("auth/login")
-    public String handleLogin(@Valid @RequestBody LoginForm loginForm) {
-        boolean result = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
-        if(result) {
-            return jwtTokenProvider.generateToken(loginForm.getEmail());
+    public LoginResponse handleLogin(@Valid @RequestBody LoginForm loginForm) {
+        Integer id = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
+        if(id != null) {
+            String token = jwtTokenProvider.generateToken(loginForm.getEmail());
+            return LoginResponse.builder().id(id).token(token).build();
         } else {
             throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Tài khoản hoặc mật khẩu không chính xác");
         }

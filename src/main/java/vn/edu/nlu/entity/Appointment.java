@@ -1,12 +1,9 @@
 package vn.edu.nlu.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -14,20 +11,30 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table
+@Builder
 public class Appointment {
+    @Transient
+    public final static int DURATION = 60 * 60 * 1000;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Date timebooking;
-    private int duration;
+    private String patientName;
+    private String patientGender;
+    private String patientPhone;
+    private String patientEmail;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateBooking;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateEnd;
     private String status;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
+    @ManyToOne(targetEntity = Doctor.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "doctorId",referencedColumnName = "id")
+    private Doctor doctor;
+    @ManyToOne(targetEntity = Patient.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "patientId",referencedColumnName = "id")
+
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
-
-
+    private String description;
 }
