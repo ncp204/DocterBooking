@@ -3,7 +3,9 @@ package vn.edu.nlu.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.entity.Booking;
+import vn.edu.nlu.payload.request.BookingRequest;
 import vn.edu.nlu.repository.BookingRepository;
+import vn.edu.nlu.service.IBookingService;
 import vn.edu.nlu.service.implement.BookingService;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController {
     @Autowired
-    BookingService bookingService;
+    IBookingService bookingService;
 
     @GetMapping("/doctor/{id}")
     public List<Booking> getListAppointmentByDoctorId(@PathVariable int id){
@@ -24,4 +26,8 @@ public class BookingController {
         return  bookingService.getListBookingPatientById(id);
     }
 
+    @PostMapping
+    public String addBooking(@RequestBody BookingRequest request){
+        return bookingService.addBooking(request);
+    }
 }

@@ -5,18 +5,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import vn.edu.nlu.entity.Degree;
 import vn.edu.nlu.entity.Doctor;
+import vn.edu.nlu.entity.Patient;
 import vn.edu.nlu.entity.Specialize;
 import vn.edu.nlu.repository.DegreeRepository;
 import vn.edu.nlu.repository.DoctorRepository;
+import vn.edu.nlu.repository.PatientRepository;
 import vn.edu.nlu.repository.SpecializeRepository;
+
+import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
 public class DataLoader  implements CommandLineRunner {
-//    private final UserRepository userRepository;
-//
-//    private final RoleRepository roleRepository;
-    // respository 2
+    private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
 
     private final DegreeRepository degreeRepository;
@@ -28,9 +29,9 @@ public class DataLoader  implements CommandLineRunner {
 //        if(roleCheckExist()){
 //            createRole();
 //        }
-//        if(userCheckExist()){
-//            createUser();
-//        }
+        if(patientCheckExist()){
+            createPatient();
+        }
         if(doctorCheckExist()){
             createDoctor();
         }
@@ -48,23 +49,20 @@ public class DataLoader  implements CommandLineRunner {
 //        roleRepository.save(role_doctor);
 //
 //    }
-//    public void createUser(){
-//        Set<Role> roles = new HashSet<>();
-//
-//        roles.add(roleRepository.findById(1).get());
-//        User user = User.builder()
-//            .user_name("black jack")
-//                .phone("1234567890")
-//                .email("john.doe@example.com")
-//                .password("123123")
-//                .specialize("Java Developer")
-//                .active(true)
-//                .register_date(new Date(System.currentTimeMillis()))
-//                .roles(roles)
-//            . build();
-//
-//        userRepository.save(user);
-//    }
+    public void createPatient(){
+        Patient patient = Patient.builder()
+                .user_name("black jack")
+                .phone("1234567890")
+                .email("john.doe@example.com")
+                .password("123123")
+                .active(true)
+                .gender("Nam")
+                .appointments(new ArrayList<>())
+                .active(true)
+                .token("")
+                .build();
+        patientRepository.save(patient);
+    }
 
     public void createDoctor(){
        Doctor doctor = new Doctor();
@@ -109,9 +107,9 @@ public class DataLoader  implements CommandLineRunner {
     }
 
 
-//    public boolean userCheckExist(){
-//        return userRepository.findAll().isEmpty();
-//    }
+    public boolean patientCheckExist(){
+        return patientRepository.findAll().isEmpty();
+    }
 //    public boolean roleCheckExist(){
 //        return userRepository.findAll().isEmpty();
 //    }
