@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.entity.Appointment;
 import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.payload.request.AppointmentRequest;
+import vn.edu.nlu.payload.request.BookingRequest;
 import vn.edu.nlu.payload.respose.AppointmentResponse;
 import vn.edu.nlu.service.implement.AppointmentService;
 
@@ -31,5 +32,8 @@ public class AppointmentController {
     public List<AppointmentResponse> getListAppointmentDoctorByDate(@RequestBody AppointmentRequest request) {
         return appointmentService.getListAppointmentByDate(request.getId(), request.getDateBooking());
     }
-
+    @PostMapping
+    public String addBooking(@RequestBody BookingRequest request){
+        return appointmentService.addBooking(request);
+    }
 }

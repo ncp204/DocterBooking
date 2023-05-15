@@ -3,22 +3,28 @@ package vn.edu.nlu.service.implement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vn.edu.nlu.entity.Appointment;
+import vn.edu.nlu.entity.Doctor;
+import vn.edu.nlu.entity.Patient;
 import vn.edu.nlu.exception.ServiceException;
+import vn.edu.nlu.payload.request.BookingRequest;
 import vn.edu.nlu.payload.respose.AppointmentResponse;
 import vn.edu.nlu.repository.AppointmentRepository;
+import vn.edu.nlu.repository.DoctorRepository;
+import vn.edu.nlu.repository.PatientRepository;
 import vn.edu.nlu.service.IAppointmentService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class AppointmentService implements IAppointmentService {
     @Autowired
     AppointmentRepository appointmentRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
+    @Autowired
+    PatientRepository patientRepository;
 
     @Override
     public List<Appointment> getAllListAppointment() {
@@ -53,7 +59,7 @@ public class AppointmentService implements IAppointmentService {
                 for (Appointment appointment : appointments) {
                     appointmentResponse = new AppointmentResponse();
                     appointmentResponse.setDateBooking(appointment.getDateBooking());
-                    appointmentResponse.setDateEnd(appointment.getDateENd());
+                    appointmentResponse.setDateEnd(appointment.getDateEnd());
                     responseList.add(appointmentResponse);
                 }
             }
@@ -61,5 +67,48 @@ public class AppointmentService implements IAppointmentService {
         } catch (Exception exception) {
             throw new ServiceException("Đã xảy ra lỗi, vui lòng kiểm tra lại!");
         }
+    }
+
+    @Override
+    public String addBooking(BookingRequest request) {
+        if (!validateDateBooking(request)) return "This time slot is already registered";
+
+        try{
+            Doctor doctor = doctorRepository.findById(request.getDoctorId()).get();
+            Patient patient = patientRepository.findById(request.getPatientId()).get();
+            Date endTime = new Date(request.getDateBooking().getTime() + Appointment.DURATION);
+            Appointment booking = Appointment.builder()
+                    .patientName(request.getFullName())
+                    .patientPhone(request.getPhone())
+                    .patientGender(request.getGender())
+                    .patientEmail(request.getEmail())
+                    .dateBooking(request.getDateBooking())
+                    .dateEnd(endTime)
+                    .doctor(doctor)
+                    .patient(patient)
+                    .description(request.getDescription())
+                    .build();
+            appointmentRepository.save(booking);
+        }catch (NoSuchElementException e){
+            return "can not define doctor ";
+        }
+
+        return "booking success";
+    }
+
+    public boolean validateDateBooking(BookingRequest request){
+        List<Appointment> doctorAppointmentList = getListAppointmentDoctorById(request.getDoctorId());
+        Date endTime = new Date(request.getDateBooking().getTime() + Appointment.DURATION);
+
+        for (Appointment booking : doctorAppointmentList){
+            Date dateBooking = booking.getDateBooking();
+            if (isDateBetween(dateBooking,request.getDateBooking(),endTime)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean isDateBetween(Date dateToCheck, Date startDate, Date endDate) {
+        return dateToCheck.compareTo(startDate) >= 0 && dateToCheck.compareTo(endDate) <= 0;
     }
 }
