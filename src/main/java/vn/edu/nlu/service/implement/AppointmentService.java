@@ -2,6 +2,9 @@ package vn.edu.nlu.service.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vn.edu.nlu.dto.AppointmentDto;
+import vn.edu.nlu.dto.DoctorDetailDto;
+import vn.edu.nlu.dto.Dtomapper;
 import vn.edu.nlu.entity.Appointment;
 import vn.edu.nlu.entity.Doctor;
 import vn.edu.nlu.entity.Patient;
@@ -27,18 +30,43 @@ public class AppointmentService implements IAppointmentService {
     PatientRepository patientRepository;
 
     @Override
-    public List<Appointment> getAllListAppointment() {
-        return appointmentRepository.findAll();
+    public List<AppointmentDto> getAllListAppointment() {
+        List<AppointmentDto> result = new ArrayList<>();
+        List<Appointment> appointments = appointmentRepository.findAll();
+        for (Appointment a:appointments) {
+            AppointmentDto appointmentDto = Dtomapper.appointmentMap(a);
+            result.add(appointmentDto);
+        }
+
+
+        return result;
     }
 
     @Override
-    public List<Appointment> getListAppointmentDoctorById(int id) {
-        return appointmentRepository.findByDoctor_id(id);
+    public List<AppointmentDto> getListAppointmentDoctorById(int id) {
+        List<AppointmentDto> result = new ArrayList<>();
+        List<Appointment> appointments = appointmentRepository.findByDoctor_id(id);
+        for (Appointment a:appointments) {
+            AppointmentDto appointmentDto = Dtomapper.appointmentMap(a);
+            result.add(appointmentDto);
+        }
+
+
+        return result;
+
     }
 
     @Override
-    public List<Appointment> getListAppointmentPatientById(int id) {
-        return appointmentRepository.findByPatient_id(id);
+    public List<AppointmentDto> getListAppointmentPatientById(int id) {
+        List<AppointmentDto> result = new ArrayList<>();
+        List<Appointment> appointments = appointmentRepository.findByPatient_id(id);
+        for (Appointment a:appointments) {
+            AppointmentDto appointmentDto = Dtomapper.appointmentMap(a);
+            result.add(appointmentDto);
+        }
+
+
+        return result;
     }
 
     @Override
@@ -97,10 +125,10 @@ public class AppointmentService implements IAppointmentService {
     }
 
     public boolean validateDateBooking(BookingRequest request){
-        List<Appointment> doctorAppointmentList = getListAppointmentDoctorById(request.getDoctorId());
+        List<AppointmentDto> doctorAppointmentList = getListAppointmentDoctorById(request.getDoctorId());
         Date endTime = new Date(request.getDateBooking().getTime() + Appointment.DURATION);
 
-        for (Appointment booking : doctorAppointmentList){
+        for (AppointmentDto booking : doctorAppointmentList){
             Date dateBooking = booking.getDateBooking();
             if (isDateBetween(dateBooking,request.getDateBooking(),endTime)){
                 return false;
