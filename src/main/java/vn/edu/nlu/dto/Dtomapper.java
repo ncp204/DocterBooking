@@ -24,6 +24,7 @@ public class Dtomapper {
                 .patientPhone(appointment.getPatientPhone())
                 .patientEmail(appointment.getPatientEmail())
                 .dateBooking(appointment.getDateBooking())
+                .dateEnd(appointment.getDateEnd())
                 .status(appointment.getStatus())
                 .doctor_id(appointment.getDoctor().getId())
                 .patient_id(appointment.getPatient().getId())
