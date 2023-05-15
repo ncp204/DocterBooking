@@ -19,7 +19,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date dateBooking;
+    private Date dateBooking;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateENd;
     private String status;
