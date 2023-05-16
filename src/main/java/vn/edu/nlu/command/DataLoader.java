@@ -235,7 +235,7 @@ public class DataLoader  implements CommandLineRunner {
                 .dateEnd(new Date(2023,5,12,16,40))
                 .status("đã khám")
                 .build();
-        appointmentRepository.save(appointment1);
+         appointmentRepository.save(appointment1);
 
         Appointment appointment2 = Appointment.builder()
                 .patient(patient)
