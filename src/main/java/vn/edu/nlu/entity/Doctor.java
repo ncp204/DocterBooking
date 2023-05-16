@@ -1,5 +1,6 @@
 package vn.edu.nlu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Builder
+
 public class Doctor extends BaseUser{
     private String fullName;
     private String specialize;
