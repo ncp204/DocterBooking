@@ -3,13 +3,11 @@ package vn.edu.nlu.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.dto.AppointmentDto;
-import vn.edu.nlu.entity.Appointment;
-import vn.edu.nlu.exception.ServiceException;
-import vn.edu.nlu.payload.request.AppointmentRequest;
 import vn.edu.nlu.payload.request.BookingRequest;
 import vn.edu.nlu.payload.respose.AppointmentResponse;
 import vn.edu.nlu.service.implement.AppointmentService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,8 +28,8 @@ public class AppointmentController {
     }
 
     @GetMapping("/doctor/date")
-    public List<AppointmentResponse> getListAppointmentDoctorByDate(@RequestBody AppointmentRequest request) {
-        return appointmentService.getListAppointmentByDate(request.getId(), request.getDateBooking());
+    public List<AppointmentResponse> getListAppointmentDoctorByDate(@RequestParam("id") int id, @RequestParam("date") Date date) {
+        return appointmentService.getListAppointmentByDate(id, date);
     }
     @PostMapping
     public String addBooking(@RequestBody BookingRequest request){
