@@ -30,12 +30,11 @@ public class Appointment {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateEnd;
     private String status;
-    @ManyToOne(targetEntity = Doctor.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "doctorId", referencedColumnName = "id")
-
+    @ManyToOne(targetEntity = Doctor.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "doctorId",referencedColumnName = "id")
     private Doctor doctor;
-    @ManyToOne(targetEntity = Patient.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientId", referencedColumnName = "id")
+    @ManyToOne(targetEntity = Patient.class,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "patientId",referencedColumnName = "id")
 
     private Patient patient;
 
