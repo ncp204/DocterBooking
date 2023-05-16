@@ -29,7 +29,7 @@ public class PatientService implements IPatientService {
                 .token(token)
                 .build();
 
-        sendmailService.sendVerificationEmail(patient, "http://localhost:8081/authen/verify/"+token);
+//        sendmailService.sendVerificationEmail(patient, "http://localhost:8081/authen/verify/"+token);
         patientRepository.save(patient);
         return patient;
     }
