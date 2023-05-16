@@ -35,4 +35,9 @@ public class AppointmentController {
     public String addBooking(@RequestBody BookingRequest request){
         return appointmentService.addBooking(request);
     }
+
+    @GetMapping("/detail/{id}")
+    public AppointmentDto getListAppointmentDetailById(@PathVariable int id) {
+        return appointmentService.getAppointmentDetailById(id);
+    }
 }
