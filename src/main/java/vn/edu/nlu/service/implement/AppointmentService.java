@@ -139,4 +139,13 @@ public class AppointmentService implements IAppointmentService {
     public static boolean isDateBetween(Date dateToCheck, Date startDate, Date endDate) {
         return dateToCheck.compareTo(startDate) >= 0 && dateToCheck.compareTo(endDate) <= 0;
     }
+
+    public AppointmentDto getAppointmentDetailById(int id){
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        if (appointment.isEmpty()){
+            return null;
+        }
+        AppointmentDto appointmentDto = Dtomapper.appointmentMap(appointment.get());
+        return appointmentDto;
+    }
 }
