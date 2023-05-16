@@ -3,10 +3,13 @@ package vn.edu.nlu.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.nlu.dto.AppointmentDto;
+import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.payload.request.BookingRequest;
 import vn.edu.nlu.payload.respose.AppointmentResponse;
 import vn.edu.nlu.service.implement.AppointmentService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +31,15 @@ public class AppointmentController {
     }
 
     @GetMapping("/doctor/date")
-    public List<AppointmentResponse> getListAppointmentDoctorByDate(@RequestParam("id") int id, @RequestParam("date") Date date) {
-        return appointmentService.getListAppointmentByDate(id, date);
+    public List<AppointmentResponse> getListAppointmentDoctorByDate(@RequestParam("id") int id, @RequestParam("date") String dateString) {
+        try {
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+            Date date = dateFormat.parse(dateString);
+            return appointmentService.getListAppointmentByDate(id, date);
+        } catch (ParseException e) {
+            throw new ServiceException("Định dạng ngày không hợp lệ");
+        }
     }
     @PostMapping
     public String addBooking(@RequestBody BookingRequest request){
