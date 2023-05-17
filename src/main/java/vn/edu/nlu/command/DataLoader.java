@@ -148,7 +148,7 @@ public class DataLoader  implements CommandLineRunner {
         doctor2.setFullName("Trần Văn Đoàn");
         doctor2.setGender("nam");
         doctor2.setSpecialize("Dinh dưỡng");
-        doctor2.setDegree("bs");
+        doctor2.setDegree("Bác Sĩ");
         doctor2.setAppointments(new ArrayList<>());
         doctorRepository.save(doctor2);
 
@@ -161,7 +161,7 @@ public class DataLoader  implements CommandLineRunner {
         doctor3.setFullName("Lê Quang Trung");
         doctor3.setGender("nam");
         doctor3.setSpecialize("Dinh dưỡng");
-        doctor3.setDegree("thạc sỹ");
+        doctor3.setDegree("THS.BS");
         doctor3.setAppointments(new ArrayList<>());
         doctorRepository.save(doctor3);
 
@@ -173,7 +173,7 @@ public class DataLoader  implements CommandLineRunner {
         doctor4.setFullName("Phạm Thu Hương");
         doctor4.setGender("nữ");
         doctor4.setSpecialize("Mắt");
-        doctor4.setDegree("ts");
+        doctor4.setDegree("TS.BS");
         doctor4.setAppointments(new ArrayList<>());
         doctorRepository.save(doctor4);
 
@@ -184,8 +184,8 @@ public class DataLoader  implements CommandLineRunner {
         doctor5.setPassword("394781291");
         doctor5.setFullName("Nguyễn Văn Hải");
         doctor5.setGender("nam");
-        doctor5.setSpecialize("Mắt");
-        doctor5.setDegree("gs");
+        doctor5.setSpecialize("Tai - Mũi - Họng");
+        doctor5.setDegree("GS.TS.BS");
         doctor5.setAppointments(new ArrayList<>());
         doctorRepository.save(doctor5);
 
@@ -197,18 +197,21 @@ public class DataLoader  implements CommandLineRunner {
         doctor6.setFullName("Trần Thị Mai");
         doctor6.setGender("nữ");
         doctor6.setSpecialize("Nhi");
-        doctor6.setDegree("bsc");
+        doctor6.setDegree("Chuyên Gia Tâm Lý");
         doctor6.setAppointments(new ArrayList<>());
         doctorRepository.save(doctor6);
     }
 
     public void createDegree(){
+        degreeRepository.save(new Degree("Chuyên Gia Tâm Lý"));
+        degreeRepository.save(new Degree("Bác Sĩ"));
        degreeRepository.save(new Degree("TS.BS"));
        degreeRepository.save(new Degree("GS.TS.BS"));
        degreeRepository.save(new Degree("PSG.TS.BS"));
     }
 
     public void createSpecialze(){
+        specializeRepository.save(new Specialize("Tai - Mũi - Họng"));
         specializeRepository.save(new Specialize("Tâm thần"));
         specializeRepository.save(new Specialize("Nhi"));
         specializeRepository.save(new Specialize("Mắt"));
