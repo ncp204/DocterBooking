@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 
 public interface IDoctorService {
-    List<Doctor> getAllDoctor();
-    List<Doctor> filerDoctor(String gender, String degree, String specialize);
+    List<DoctorDetailDto> getAllDoctor();
+    List<DoctorDetailDto> filerDoctor(String gender, String degree, String specialize);
 
     DoctorDetailDto getDetailById(int id);
 }

@@ -26,12 +26,12 @@ public class DoctorController {
 //    doctor list
 
     @GetMapping("/list")
-    public List<Doctor> getDoctors() {
+    public List<DoctorDetailDto> getDoctors() {
         return doctorService.getAllDoctor();
     }
 
     @GetMapping("/filter")
-    public List<Doctor> filerDoctor(@DefaultValue("nam")  @RequestParam("gender")  String gender,
+    public List<DoctorDetailDto> filerDoctor(@DefaultValue("nam")  @RequestParam("gender")  String gender,
                                     @DefaultValue("TS.BS") @RequestParam("degree") String degree, @DefaultValue("Tâm thần") @RequestParam("specialize") String specialize) {
         System.out.println(gender);
         System.out.println(degree);
