@@ -13,4 +13,5 @@ public class LoginResponse {
     private int id;
     private String token;
     private String roles;
+    private String userName;
 }

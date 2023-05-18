@@ -8,6 +8,7 @@ import vn.edu.nlu.entity.Patient;
 import vn.edu.nlu.payload.respose.LoginResponse;
 import vn.edu.nlu.repository.DoctorRepository;
 import vn.edu.nlu.repository.PatientRepository;
+import vn.edu.nlu.security.jwt.JwtTokenProvider;
 import vn.edu.nlu.service.IUserService;
 
 import java.util.Optional;
@@ -18,18 +19,35 @@ public class UserService implements IUserService {
     DoctorRepository doctorRepository;
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public BaseUser authLogin(String email, String password) {
+    public LoginResponse authLogin(String email, String password) {
         email = email.trim();
         password = password.trim();
         Optional<Doctor> doctor = doctorRepository.findDoctorByEmail(email);
+        LoginResponse loginResponse;
+        int id;
+        String token;
         if (doctor.isPresent()) {
-            return doctor.get().getPassword().trim().equals(password) ? doctor.get() : null;
+            Doctor dt = doctor.get();
+            if (dt.getPassword().trim().equals(password)) {
+                id = dt.getId();
+                token = jwtTokenProvider.generateToken(dt.getEmail());
+                loginResponse = LoginResponse.builder().id(id).token(token).roles("Doctor").userName(dt.getUser_name()).build();
+                return loginResponse;
+            }
         } else {
             Optional<Patient> patient = patientRepository.findPatientByEmail(email);
             if (patient.isPresent()) {
-                return patient.get().getPassword().trim().equals(password) ? patient.get() : null;
+                Patient pt = patient.get();
+                if (pt.getPassword().trim().equals(password)) {
+                    id = pt.getId();
+                    token = jwtTokenProvider.generateToken(pt.getEmail());
+                    loginResponse = LoginResponse.builder().id(id).token(token).roles("Patient").userName(pt.getUser_name()).build();
+                    return loginResponse;
+                }
             }
         }
         return null;
