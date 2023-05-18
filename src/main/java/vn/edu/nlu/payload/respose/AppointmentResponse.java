@@ -12,4 +12,6 @@ import java.util.Date;
 public class AppointmentResponse {
     private Date dateBooking;
     private Date dateEnd;
+    private int timeBooking;
+    private int timeEnd;
 }

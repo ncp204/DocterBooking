@@ -16,7 +16,7 @@ import java.util.Date;
 @Builder
 public class Appointment {
     @Transient
-    public final static int DURATION = 60 * 60 * 1000;
+    public final static int DURATION = 1;//hours
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,12 @@ public class Appointment {
     private String patientGender;
     private String patientPhone;
     private String patientEmail;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateBooking;
-    @Temporal(TemporalType.TIMESTAMP)
+    private int timeBooking;
+    @Temporal(TemporalType.DATE)
     private Date dateEnd;
+    private int timeEnd;
     private String status;
     @ManyToOne(targetEntity = Doctor.class,cascade = CascadeType.MERGE)
     @JoinColumn(name = "doctorId",referencedColumnName = "id")

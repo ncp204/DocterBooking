@@ -236,6 +236,8 @@ public class DataLoader  implements CommandLineRunner {
                 .description("đau bụng khó tiêu")
                 .dateBooking(new Date(2023,5,12,15,40))
                 .dateEnd(new Date(2023,5,12,16,40))
+                .timeBooking(5)
+                .timeEnd(6)
                 .status("đã khám")
                 .build();
          appointmentRepository.save(appointment1);
@@ -250,6 +252,8 @@ public class DataLoader  implements CommandLineRunner {
                 .description("đau đầu và mệt mỏi")
                 .dateBooking(new Date(2024,6,15,9,30))
                 .dateEnd(new Date(2024,6,15,10,30))
+                .timeBooking(6)
+                .timeEnd(7)
                 .status("đã khám")
                 .build();
         appointmentRepository.save(appointment2);
@@ -264,6 +268,8 @@ public class DataLoader  implements CommandLineRunner {
                 .description("ho và sổ mũi")
                 .dateBooking(new Date(2023,8,1,18,30))
                 .dateEnd(new Date(2023,8,1,19,30))
+                .timeBooking(6)
+                .timeEnd(7)
                 .status("đã khám")
                 .build();
         appointmentRepository.save(appointment3);
@@ -278,6 +284,8 @@ public class DataLoader  implements CommandLineRunner {
                 .description("đau đầu và nhiều gò má")
                 .dateBooking(new Date(2022,11,10,11,0))
                 .dateEnd(new Date(2022,11,10,12,0))
+                .timeBooking(8)
+                .timeEnd(9)
                 .status("đã khám")
                 .build();
         appointmentRepository.save(appointment4);
