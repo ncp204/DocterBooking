@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import vn.edu.nlu.entity.BaseUser;
 import vn.edu.nlu.exception.ServiceException;
 import vn.edu.nlu.payload.request.LoginForm;
 import vn.edu.nlu.payload.respose.LoginResponse;
@@ -23,10 +24,11 @@ public class LoginController {
     @ResponseBody
     @PostMapping("auth/login")
     public LoginResponse handleLogin(@Valid @RequestBody LoginForm loginForm) {
-        Integer id = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
-        if(id != null) {
+        BaseUser user = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
+        if(user != null) {
+
             String token = jwtTokenProvider.generateToken(loginForm.getEmail());
-            return LoginResponse.builder().id(id).token(token).build();
+            return LoginResponse.builder().id(user.getId()).token(token).roles(user.getClass().getSimpleName()).build();
         } else {
             throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Tài khoản hoặc mật khẩu không chính xác");
         }
