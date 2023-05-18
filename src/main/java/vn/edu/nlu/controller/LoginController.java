@@ -24,11 +24,9 @@ public class LoginController {
     @ResponseBody
     @PostMapping("auth/login")
     public LoginResponse handleLogin(@Valid @RequestBody LoginForm loginForm) {
-        BaseUser user = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
-        if(user != null) {
-
-            String token = jwtTokenProvider.generateToken(loginForm.getEmail());
-            return LoginResponse.builder().id(user.getId()).token(token).roles(user.getClass().getSimpleName()).build();
+        LoginResponse loginResponse = userService.authLogin(loginForm.getEmail(), loginForm.getPassword());
+        if(loginResponse != null) {
+            return loginResponse;
         } else {
             throw new ServiceException(HttpStatus.INTERNAL_SERVER_ERROR, "Tài khoản hoặc mật khẩu không chính xác");
         }

@@ -7,5 +7,5 @@ import vn.edu.nlu.payload.respose.LoginResponse;
 @Service
 
 public interface IUserService {
-    BaseUser authLogin(String email, String password);
+    LoginResponse authLogin(String email, String password);
 }
