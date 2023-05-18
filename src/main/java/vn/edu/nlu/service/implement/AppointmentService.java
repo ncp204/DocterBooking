@@ -88,6 +88,8 @@ public class AppointmentService implements IAppointmentService {
                     appointmentResponse = new AppointmentResponse();
                     appointmentResponse.setDateBooking(appointment.getDateBooking());
                     appointmentResponse.setDateEnd(appointment.getDateEnd());
+                    appointmentResponse.setTimeBooking(appointment.getTimeBooking());
+                    appointmentResponse.setTimeEnd(appointment.getTimeEnd());
                     responseList.add(appointmentResponse);
                 }
             }
@@ -104,14 +106,15 @@ public class AppointmentService implements IAppointmentService {
         try{
             Doctor doctor = doctorRepository.findById(request.getDoctorId()).get();
             Patient patient = patientRepository.findById(request.getPatientId()).get();
-            Date endTime = new Date(request.getDateBooking().getTime() + Appointment.DURATION);
             Appointment booking = Appointment.builder()
                     .patientName(request.getFullName())
                     .patientPhone(request.getPhone())
                     .patientGender(request.getGender())
                     .patientEmail(request.getEmail())
                     .dateBooking(request.getDateBooking())
-                    .dateEnd(endTime)
+                    .dateEnd(request.getDateBooking())
+                    .timeBooking(request.getTimeBooking())
+                    .timeEnd(request.getTimeBooking() + Appointment.DURATION)
                     .doctor(doctor)
                     .patient(patient)
                     .description(request.getDescription())
@@ -126,11 +129,14 @@ public class AppointmentService implements IAppointmentService {
 
     public boolean validateDateBooking(BookingRequest request){
         List<AppointmentDto> doctorAppointmentList = getListAppointmentDoctorById(request.getDoctorId());
-        Date endTime = new Date(request.getDateBooking().getTime() + Appointment.DURATION);
+        int timeBooking = request.getTimeBooking();
 
         for (AppointmentDto booking : doctorAppointmentList){
             Date dateBooking = booking.getDateBooking();
-            if (isDateBetween(dateBooking,request.getDateBooking(),endTime)){
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+            boolean isSamedate = fmt.format(dateBooking).equals(fmt.format(request.getDateBooking()));
+            System.out.println(isSamedate);
+            if (isSamedate && (timeBooking == booking.getTimeBooking())){
                 return false;
             }
         }

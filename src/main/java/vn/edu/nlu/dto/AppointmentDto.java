@@ -19,6 +19,8 @@ public class AppointmentDto {
     private String patientEmail;
     private Date dateBooking;
     private Date dateEnd;
+    private int timeBooking;
+    private int timeEnd;
     private String status;
     private int doctor_id;
     private int patient_id;

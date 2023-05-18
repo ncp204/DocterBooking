@@ -19,5 +19,6 @@ public class BookingRequest {
     private String phone;
     private String email;
     private Date dateBooking;
+    private int timeBooking;
     private String description;
 }
