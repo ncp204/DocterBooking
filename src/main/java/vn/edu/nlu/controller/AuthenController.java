@@ -11,6 +11,7 @@ import vn.edu.nlu.service.IPatientService;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/authen")
 public class AuthenController {
     @Autowired
